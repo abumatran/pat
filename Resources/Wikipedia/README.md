@@ -16,7 +16,7 @@ apertium-destxt | lt-proc -a slv.automorf.bin | python3 anmor2tok.py > slwiki.to
 Truecasing (using Moses tools)
 ~~~~
 $ perl train-truecaser.pl --model truecaser.sl --corpus slwiki.tok
-$ perl truecase.pl --model truecaser.sl <slwiki.tok >slwiki.true
+$ perl truecaser.pl --model truecaser.sl <slwiki.tok >slwiki.true
 ~~~~
 
 Frequency lists
