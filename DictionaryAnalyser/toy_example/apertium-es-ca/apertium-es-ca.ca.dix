@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Dictionary:
+	Sections: 4
+	Entries: 40352
+	Sdefs: 69
+	Paradigms: 557
+	Last processed by: apertium-dixtools equiv-paradigms apertium-es-ca.ca.dix apertium-es-ca.ca.dix2
+
+-->
+<dictionary>
+  <alphabet>·ÀÁÂÄÇÈÉÊËÌÍÎÏÑÒÓÔÖÙÚÛÜàáâäçèéêëìíîïñòóôöùúûüABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzŀl</alphabet>
+  <sdefs>
+    <sdef n="detnt" /> 
+    <sdef n="predet" /> 
+    <sdef n="atn" /> 
+    <sdef n="enc" /> 
+    <sdef n="pro" /> 
+    <sdef n="tn" /> 
+    <sdef n="acr" /> 
+    <sdef n="loc" /> 
+    <sdef n="ant" /> 
+    <sdef n="al" /> 
+    <sdef n="n" /> 
+    <sdef n="np" /> 
+    <sdef n="adj" /> 
+    <sdef n="f" /> 
+    <sdef n="m" /> 
+    <sdef n="mf" /> 
+    <sdef n="sg" /> 
+    <sdef n="pl" /> 
+    <sdef n="adv" /> 
+    <sdef n="preadv" /> 
+    <sdef n="pr" /> 
+    <sdef n="prn" /> 
+    <sdef n="rel" /> 
+    <sdef n="nn" /> 
+    <sdef n="an" /> 
+    <sdef n="aa" /> 
+    <sdef n="ind" /> 
+    <sdef n="itg" /> 
+    <sdef n="det" /> 
+    <sdef n="dem" /> 
+    <sdef n="def" /> 
+    <sdef n="cnjcoo" /> 
+    <sdef n="cnjsub" /> 
+    <sdef n="cnjadv" /> 
+    <sdef n="nt" /> 
+    <sdef n="vaux" /> 
+    <sdef n="vbser" /> 
+    <sdef n="vbhaver" /> 
+    <sdef n="vblex" /> 
+    <sdef n="vbmod" /> 
+    <sdef n="inf" /> 
+    <sdef n="ger" /> 
+    <sdef n="pp" /> 
+    <sdef n="pri" /> 
+    <sdef n="ifi" /> 
+    <sdef n="p1" /> 
+    <sdef n="p2" /> 
+    <sdef n="p3" /> 
+    <sdef n="pii" /> 
+    <sdef n="fti" /> 
+    <sdef n="cni" /> 
+    <sdef n="prs" /> 
+    <sdef n="pis" /> 
+    <sdef n="fts" /> 
+    <sdef n="imp" /> 
+    <sdef n="pos" /> 
+    <sdef n="gen" /> 
+    <sdef n="nom" /> 
+    <sdef n="sp" /> 
+    <sdef n="ref" /> 
+    <sdef n="sup" /> 
+    <sdef n="num" /> 
+    <sdef n="ij" /> 
+    <sdef n="sent" /> 
+    <sdef n="cm" /> 
+    <sdef n="lpar" /> 
+    <sdef n="rpar" /> 
+    <sdef n="lquest" /> 
+    <sdef n="web" /> 
+  </sdefs>
+  <pardefs>
+	<pardef n="el__detnt">
+	  <e>       <p><l></l>          <r><s n="detnt"/></r></p></e>
+
+	</pardef>
+	<!--this paradigm will be ignored since is a closed category-->
+	<pardef n="tot__predet">
+	  <e>       <p><l>es</l>        <r><s n="predet"/><s n="f"/><s n="pl"/></r></p></e>
+
+	  <e>       <p><l>a</l>         <r><s n="predet"/><s n="f"/><s n="sg"/></r></p></e>
+
+	  <e>       <p><l>s</l>         <r><s n="predet"/><s n="m"/><s n="pl"/></r></p></e>
+
+	  <e>       <p><l></l>          <r><s n="predet"/><s n="m"/><s n="sg"/></r></p></e>
+
+	  <e>       <p><l></l>          <r><s n="predet"/><s n="nt"/><s n="sp"/></r></p></e>
+
+	</pardef>
+
+	<!--this paradigm will be ignored in most of cases because there is only one word using it-->
+	<pardef n="ser/f__n">
+	  <e>       <p><l>ves</l>       <r>f<s n="n"/><s n="f"/><s n="pl"/></r></p></e>
+
+	  <e>       <p><l>va</l>        <r>f<s n="n"/><s n="f"/><s n="sg"/></r></p></e>
+
+	  <e>       <p><l>fs</l>        <r>f<s n="n"/><s n="m"/><s n="pl"/></r></p></e>
+
+	  <e>       <p><l>f</l>         <r>f<s n="n"/><s n="m"/><s n="sg"/></r></p></e>
+
+	</pardef>
+
+	<!--this paradigm doesn't add any suffixes, just the lexical information-->
+	<pardef n="BBC__n"><e><p><l></l><r><s n="n"/><s n="acr"/><s n="f"/><s n="sg"/></r></p></e>
+	</pardef>
+
+	<!--very usual paradigm, 4 words use it-->
+	<pardef n="senyor__n">
+	  <e>       <p><l>es</l>        <r><s n="n"/><s n="f"/><s n="pl"/></r></p></e>
+
+	  <e>       <p><l>a</l>         <r><s n="n"/><s n="f"/><s n="sg"/></r></p></e>
+
+	  <e>       <p><l>s</l>         <r><s n="n"/><s n="m"/><s n="pl"/></r></p></e>
+
+	  <e>       <p><l></l>          <r><s n="n"/><s n="m"/><s n="sg"/></r></p></e>
+
+	</pardef>
+
+	<!--this paradigm will be ignored in most of cases because there is only one word using it-->
+	<pardef n="Ferrari__np">
+	  <e>       <p><l></l>          <r><s n="np"/><s n="al"/></r></p></e>
+
+	  <e>       <p><l></l>          <r><s n="np"/><s n="ant"/></r></p></e>
+
+	</pardef>
+
+	<!--Case of a proper noun that only generates toponyms-->
+	<pardef n="Afganistan__np">
+	  <e>       <p><l></l>          <r><s n="np"/><s n="loc"/></r></p></e>
+	</pardef>
+
+	<!--Case of a proper noun that generates both antroponyms and toponyms-->
+	<pardef n="Pau__np">
+	  <e>       <p><l></l>          <r><s n="np"/><s n="ant"/></r></p></e>
+
+	  <e>       <p><l></l>          <r><s n="np"/><s n="loc"/></r></p></e>
+	</pardef>
+
+	<!--Example of adjective generating all the plural/singular, masculine/feminine, and superlative combinations-->
+	<pardef n="annex__adj">
+	  <e>       <p><l>es</l>        <r><s n="adj"/><s n="f"/><s n="pl"/></r></p></e>
+
+	  <e>       <p><l>a</l>         <r><s n="adj"/><s n="f"/><s n="sg"/></r></p></e>
+
+	  <e>       <p><l>os</l>        <r><s n="adj"/><s n="m"/><s n="pl"/></r></p></e>
+
+	  <e>       <p><l></l>          <r><s n="adj"/><s n="m"/><s n="sg"/></r></p></e>
+
+	</pardef>
+
+	<!--Example of adjective that only generates feminine/non-superlative forms (it is included in "trist__adj")-->
+	<pardef n="clariss/a__adj">
+	  <e>       <p><l>es</l>        <r>a<s n="adj"/><s n="f"/><s n="pl"/></r></p></e>
+
+	  <e>       <p><l>a</l>         <r>a<s n="adj"/><s n="f"/><s n="sg"/></r></p></e>
+
+	</pardef>
+
+	<!--This paradigm will be ignored because the words reffering it are multi-words-->
+	<pardef n="sengles__det">
+	  <e>       <p><l></l>          <r><s n="det"/><s n="ind"/><s n="mf"/><s n="pl"/></r></p></e>
+	</pardef>
+  </pardefs>
+
+  <section id="main" type="standard">
+	<e r="LR" lm="el">       <i>el</i><par n="el__detnt"/></e>
+	<e lm="tot">             <i>tot</i><par n="tot__predet"/></e>
+	<e lm="serf" a="prompsit2adn"><i>ser</i><par n="ser/f__n"/></e> <!--this is the only word using this paradigm-->
+
+	<e lm="BBC">             <i>BBC</i><par n="BBC__n"/></e>
+	<e lm="UVic">            <i>UVic</i><par n="BBC__n"/></e>
+
+	<e lm="orador">          <i>orador</i><par n="senyor__n"/></e>
+	<e lm="prestador">       <i>prestador</i><par n="senyor__n"/></e>
+	<e lm="acusador">        <i>acusador</i><par n="senyor__n"/></e>
+	<e lm="administrador">   <i>administrador</i><par n="senyor__n"/></e>
+
+	<e lm="Ferrari">         <i>Ferrari</i><par n="Ferrari__np"/></e>
+
+	<e lm="Amara">           <i>Amara</i><par n="Afganistan__np"/></e>
+	<e lm="Antiguo" i="yes"> <i>Antiguo</i><par n="Afganistan__np"/></e>
+
+	<e lm="Núria">           <i>Núria</i><par n="Pau__np"/></e>
+	<e lm="Pau">             <i>Pau</i><par n="Pau__np"/></e>
+
+	<e lm="clarissa">        <i>clariss</i><par n="clariss/a__adj"/></e>
+	<e lm="lesbiana">        <i>lesbian</i> <par n="clariss/a__adj"/></e>
+
+	<e lm="cast">            <i>cast</i><par n="annex__adj"/></e>
+	<e lm="baix">            <i>baix</i><par n="annex__adj"/></e>
+
+	<e r="LR" lm="tot un seguit de"><p><l>tot<b/>un<b/>seguit<b/>d'</l><r>tot<b/>un<b/>seguit<b/>de</r></p><par n="sengles__det"/></e>
+	<e r="LR" lm="un seguit de"><p><l>un<b/>seguit<b/>d'</l><r>un<b/>seguit<b/>de</r></p><par n="sengles__det"/></e>
+  </section>
+</dictionary>

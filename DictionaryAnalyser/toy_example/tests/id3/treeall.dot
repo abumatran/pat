@@ -1,0 +1,180 @@
+digraph DecissionTree {
+node [shape=circle];  node0 [label="los"]; node2 [label="loa"]; node1 [label="la"]; 
+node [shape=box];  node6 [label="lo|lo__detnt;lo|BBC__n;lo|Ferrari__np;lo|Afganistán__np;lo|Belén__np;Score=0.0"]; node5 [label="lo|señor__n;Score=0.25"]; node4 [label="lo|accionista__n;lo|clarisa__adj;Score=0.5"]; node3 [label="l|tod/o__predet;l|abogad/o__n;l|absolut/o__adj;Score=0.25"]; 
+"node0" -> "node2" [label="no"];
+"node0" -> "node1" [label="yes"];
+"node2" -> "node6" [label="no"];
+"node2" -> "node5" [label="yes"];
+"node1" -> "node4" [label="no"];
+"node1" -> "node3" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node7 [label="todos"]; node9 [label="todoa"]; node8 [label="todas"]; 
+node [shape=box];  node13 [label="todo|lo__detnt;todo|BBC__n;todo|Ferrari__np;todo|Afganistán__np;todo|Belén__np;Score=1.0"]; node12 [label="todo|señor__n;Score=0.25"]; node11 [label="todo|accionista__n;todo|clarisa__adj;Score=1.0"]; node10 [label="tod|tod/o__predet;tod|abogad/o__n;tod|absolut/o__adj;Score=0.0"]; 
+"node7" -> "node9" [label="no"];
+"node7" -> "node8" [label="yes"];
+"node9" -> "node13" [label="no"];
+"node9" -> "node12" [label="yes"];
+"node8" -> "node11" [label="no"];
+"node8" -> "node10" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node14 [label="siervos"]; node16 [label="siervoes"]; node15 [label="siervas"]; 
+node [shape=box];  node20 [label="siervo|lo__detnt;siervo|BBC__n;siervo|Ferrari__np;siervo|Afganistán__np;siervo|Belén__np;Score=1.0"]; node19 [label="siervo|señor__n;Score=0.25"]; node18 [label="siervo|accionista__n;siervo|clarisa__adj;Score=1.0"]; node17 [label="sierv|tod/o__predet;sierv|abogad/o__n;sierv|absolut/o__adj;Score=1.0"]; 
+"node14" -> "node16" [label="no"];
+"node14" -> "node15" [label="yes"];
+"node16" -> "node20" [label="no"];
+"node16" -> "node19" [label="yes"];
+"node15" -> "node18" [label="no"];
+"node15" -> "node17" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node21 [label="BBCs"]; node23 [label="BBCes"]; 
+node [shape=box];  node25 [label="BBC|lo__detnt;BBC|BBC__n;BBC|Ferrari__np;BBC|Afganistán__np;BBC|Belén__np;Score=1.0"]; node24 [label="BBC|señor__n;Score=0.25"]; node22 [label="BBC|accionista__n;BBC|clarisa__adj;Score=0.5"]; 
+"node21" -> "node23" [label="no"];
+"node21" -> "node22" [label="yes"];
+"node23" -> "node25" [label="no"];
+"node23" -> "node24" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node26 [label="UVicas"]; node28 [label="UVics"]; 
+node [shape=box];  node30 [label="UVic|lo__detnt;UVic|BBC__n;UVic|Ferrari__np;UVic|Afganistán__np;UVic|Belén__np;Score=0.0"]; node29 [label="UVic|accionista__n;UVic|clarisa__adj;Score=0.0"]; node27 [label="UVic|señor__n;Score=0.0"]; 
+"node26" -> "node28" [label="no"];
+"node26" -> "node27" [label="yes"];
+"node28" -> "node30" [label="no"];
+"node28" -> "node29" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node31 [label="oradores"]; node33 [label="oradors"]; 
+node [shape=box];  node35 [label="orador|lo__detnt;orador|BBC__n;orador|Ferrari__np;orador|Afganistán__np;orador|Belén__np;Score=1.0"]; node34 [label="orador|accionista__n;orador|clarisa__adj;Score=0.5"]; node32 [label="orador|señor__n;Score=1.0"]; 
+"node31" -> "node33" [label="no"];
+"node31" -> "node32" [label="yes"];
+"node33" -> "node35" [label="no"];
+"node33" -> "node34" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node36 [label="acusadores"]; node38 [label="acusadors"]; 
+node [shape=box];  node40 [label="acusador|lo__detnt;acusador|BBC__n;acusador|Ferrari__np;acusador|Afganistán__np;acusador|Belén__np;Score=1.0"]; node39 [label="acusador|accionista__n;acusador|clarisa__adj;Score=0.5"]; node37 [label="acusador|señor__n;Score=1.0"]; 
+"node36" -> "node38" [label="no"];
+"node36" -> "node37" [label="yes"];
+"node38" -> "node40" [label="no"];
+"node38" -> "node39" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node41 [label="administradora"]; node43 [label="administradors"]; 
+node [shape=box];  node45 [label="administrador|lo__detnt;administrador|BBC__n;administrador|Ferrari__np;administrador|Afganistán__np;administrador|Belén__np;Score=1.0"]; node44 [label="administrador|accionista__n;administrador|clarisa__adj;Score=0.5"]; node42 [label="administrador|señor__n;Score=1.0"]; 
+"node41" -> "node43" [label="no"];
+"node41" -> "node42" [label="yes"];
+"node43" -> "node45" [label="no"];
+"node43" -> "node44" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node46 [label="prestamistas"]; node48 [label="prestamistaa"]; node47 [label="prestamistos"]; node50 [label="prestamist"]; 
+node [shape=box];  node54 [label="prestamista|lo__detnt;prestamista|BBC__n;prestamista|Ferrari__np;prestamista|Afganistán__np;prestamista|Belén__np;Score=1.0"]; node53 [label="prestamista|señor__n;Score=0.25"]; node52 [label="prestamista|accionista__n;prestamista|clarisa__adj;Score=0.0"]; node51 [label="prestamist|señor__n;Score=0.5"]; node49 [label="prestamist|tod/o__predet;prestamist|abogad/o__n;prestamist|absolut/o__adj;Score=0.5"]; 
+"node46" -> "node48" [label="no"];
+"node46" -> "node47" [label="yes"];
+"node48" -> "node54" [label="no"];
+"node48" -> "node53" [label="yes"];
+"node47" -> "node50" [label="no"];
+"node47" -> "node49" [label="yes"];
+"node50" -> "node52" [label="no"];
+"node50" -> "node51" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node55 [label="Ferraris"]; node57 [label="Ferrarias"]; 
+node [shape=box];  node59 [label="Ferrari|lo__detnt;Ferrari|BBC__n;Ferrari|Ferrari__np;Ferrari|Afganistán__np;Ferrari|Belén__np;Score=1.0"]; node58 [label="Ferrari|señor__n;Score=0.25"]; node56 [label="Ferrari|accionista__n;Ferrari|clarisa__adj;Score=0.5"]; 
+"node55" -> "node57" [label="no"];
+"node55" -> "node56" [label="yes"];
+"node57" -> "node59" [label="no"];
+"node57" -> "node58" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node60 [label="Amaras"]; node62 [label="Amaraa"]; node61 [label="Amaros"]; node64 [label="Amar"]; 
+node [shape=box];  node68 [label="Amara|lo__detnt;Amara|BBC__n;Amara|Ferrari__np;Amara|Afganistán__np;Amara|Belén__np;Score=1.0"]; node67 [label="Amara|señor__n;Score=0.25"]; node66 [label="Amara|accionista__n;Amara|clarisa__adj;Score=0.5"]; node65 [label="Amar|señor__n;Score=0.25"]; node63 [label="Amar|tod/o__predet;Amar|abogad/o__n;Amar|absolut/o__adj;Score=0.25"]; 
+"node60" -> "node62" [label="no"];
+"node60" -> "node61" [label="yes"];
+"node62" -> "node68" [label="no"];
+"node62" -> "node67" [label="yes"];
+"node61" -> "node64" [label="no"];
+"node61" -> "node63" [label="yes"];
+"node64" -> "node66" [label="no"];
+"node64" -> "node65" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node69 [label="Antiguos"]; node71 [label="Antiguoas"]; node70 [label="Antiguas"]; 
+node [shape=box];  node75 [label="Antiguo|lo__detnt;Antiguo|BBC__n;Antiguo|Ferrari__np;Antiguo|Afganistán__np;Antiguo|Belén__np;Score=1.0"]; node74 [label="Antiguo|señor__n;Score=0.25"]; node73 [label="Antiguo|accionista__n;Antiguo|clarisa__adj;Score=0.5"]; node72 [label="Antigu|tod/o__predet;Antigu|abogad/o__n;Antigu|absolut/o__adj;Score=0.25"]; 
+"node69" -> "node71" [label="no"];
+"node69" -> "node70" [label="yes"];
+"node71" -> "node75" [label="no"];
+"node71" -> "node74" [label="yes"];
+"node70" -> "node73" [label="no"];
+"node70" -> "node72" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node76 [label="Núrias"]; node78 [label="Núriaas"]; node77 [label="Núrios"]; node80 [label="Núri"]; 
+node [shape=box];  node84 [label="Núria|lo__detnt;Núria|BBC__n;Núria|Ferrari__np;Núria|Afganistán__np;Núria|Belén__np;Score=1.0"]; node83 [label="Núria|señor__n;Score=0.25"]; node82 [label="Núria|accionista__n;Núria|clarisa__adj;Score=0.5"]; node81 [label="Núri|señor__n;Score=0.25"]; node79 [label="Núri|tod/o__predet;Núri|abogad/o__n;Núri|absolut/o__adj;Score=0.25"]; 
+"node76" -> "node78" [label="no"];
+"node76" -> "node77" [label="yes"];
+"node78" -> "node84" [label="no"];
+"node78" -> "node83" [label="yes"];
+"node77" -> "node80" [label="no"];
+"node77" -> "node79" [label="yes"];
+"node80" -> "node82" [label="no"];
+"node80" -> "node81" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node85 [label="Paus"]; node87 [label="Paues"]; 
+node [shape=box];  node89 [label="Pau|lo__detnt;Pau|BBC__n;Pau|Ferrari__np;Pau|Afganistán__np;Pau|Belén__np;Score=1.0"]; node88 [label="Pau|señor__n;Score=0.25"]; node86 [label="Pau|accionista__n;Pau|clarisa__adj;Score=0.5"]; 
+"node85" -> "node87" [label="no"];
+"node85" -> "node86" [label="yes"];
+"node87" -> "node89" [label="no"];
+"node87" -> "node88" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node90 [label="lesbianas"]; node92 [label="lesbianaas"]; node91 [label="lesbiano"]; node94 [label="lesbian"]; 
+node [shape=box];  node98 [label="lesbiana|lo__detnt;lesbiana|BBC__n;lesbiana|Ferrari__np;lesbiana|Afganistán__np;lesbiana|Belén__np;Score=1.0"]; node97 [label="lesbiana|señor__n;Score=0.25"]; node96 [label="lesbiana|accionista__n;lesbiana|clarisa__adj;Score=1.0"]; node95 [label="lesbian|señor__n;Score=0.5"]; node93 [label="lesbian|tod/o__predet;lesbian|abogad/o__n;lesbian|absolut/o__adj;Score=0.5"]; 
+"node90" -> "node92" [label="no"];
+"node90" -> "node91" [label="yes"];
+"node92" -> "node98" [label="no"];
+"node92" -> "node97" [label="yes"];
+"node91" -> "node94" [label="no"];
+"node91" -> "node93" [label="yes"];
+"node94" -> "node96" [label="no"];
+"node94" -> "node95" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node99 [label="clarisa"]; node101 [label="clarisass"]; node107 [label="clarisases"]; node100 [label="clarisos"]; node103 [label="claris"]; 
+node [shape=box];  node109 [label="clarisas|lo__detnt;clarisas|BBC__n;clarisas|Ferrari__np;clarisas|Afganistán__np;clarisas|Belén__np;Score=1.0"]; node108 [label="clarisas|señor__n;Score=0.25"]; node106 [label="clarisas|accionista__n;clarisas|clarisa__adj;Score=0.5"]; node105 [label="clarisa|accionista__n;clarisa|clarisa__adj;Score=1.0"]; node104 [label="claris|señor__n;Score=0.5"]; node102 [label="claris|tod/o__predet;claris|abogad/o__n;claris|absolut/o__adj;Score=0.5"]; 
+"node99" -> "node101" [label="no"];
+"node99" -> "node100" [label="yes"];
+"node101" -> "node107" [label="no"];
+"node101" -> "node106" [label="yes"];
+"node107" -> "node109" [label="no"];
+"node107" -> "node108" [label="yes"];
+"node100" -> "node103" [label="no"];
+"node100" -> "node102" [label="yes"];
+"node103" -> "node105" [label="no"];
+"node103" -> "node104" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node110 [label="castas"]; node112 [label="castaes"]; node111 [label="castos"]; node114 [label="castes"]; 
+node [shape=box];  node118 [label="casta|lo__detnt;casta|BBC__n;casta|Ferrari__np;casta|Afganistán__np;casta|Belén__np;Score=1.0"]; node117 [label="casta|señor__n;Score=0.25"]; node116 [label="casta|accionista__n;casta|clarisa__adj;Score=1.0"]; node115 [label="cast|señor__n;Score=0.5"]; node113 [label="cast|tod/o__predet;cast|abogad/o__n;cast|absolut/o__adj;Score=1.0"]; 
+"node110" -> "node112" [label="no"];
+"node110" -> "node111" [label="yes"];
+"node112" -> "node118" [label="no"];
+"node112" -> "node117" [label="yes"];
+"node111" -> "node114" [label="no"];
+"node111" -> "node113" [label="yes"];
+"node114" -> "node116" [label="no"];
+"node114" -> "node115" [label="yes"];
+}
+digraph DecissionTree {
+node [shape=circle];  node119 [label="bajos"]; node121 [label="bajoes"]; node120 [label="baja"]; 
+node [shape=box];  node125 [label="bajo|lo__detnt;bajo|BBC__n;bajo|Ferrari__np;bajo|Afganistán__np;bajo|Belén__np;Score=1.0"]; node124 [label="bajo|señor__n;Score=0.25"]; node123 [label="bajo|accionista__n;bajo|clarisa__adj;Score=1.0"]; node122 [label="baj|tod/o__predet;baj|abogad/o__n;baj|absolut/o__adj;Score=1.0"]; 
+"node119" -> "node121" [label="no"];
+"node119" -> "node120" [label="yes"];
+"node121" -> "node125" [label="no"];
+"node121" -> "node124" [label="yes"];
+"node120" -> "node123" [label="no"];
+"node120" -> "node122" [label="yes"];
+}

@@ -1,0 +1,6 @@
+cast|absolut/o__adj
+BBC|BBC__n
+administrador|señor__n
+Amara|Afganistán__np
+lesbiana|clarisa__adj
+Pau|Belén__np

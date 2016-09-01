@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- -*-nxml-*- -->
+<!--
+	Dictionary:
+	Sections: 2
+	Entries: 26654
+	Sdefs: 69
+-->
+<dictionary>
+  <alphabet></alphabet>
+  <sdefs>
+    <sdef n="v2" /> 
+    <sdef n="acr" /> 
+    <sdef n="predet" /> 
+    <sdef n="detnt" /> 
+    <sdef n="loc" /> 
+    <sdef n="ant" /> 
+    <sdef n="al" /> 
+    <sdef n="atn" /> 
+    <sdef n="enc" /> 
+    <sdef n="pro" /> 
+    <sdef n="tn" /> 
+    <sdef n="n" /> 
+    <sdef n="np" /> 
+    <sdef n="adj" /> 
+    <sdef n="f" /> 
+    <sdef n="m" /> 
+    <sdef n="mf" /> 
+    <sdef n="sg" /> 
+    <sdef n="pl" /> 
+    <sdef n="adv" /> 
+    <sdef n="preadv" /> 
+    <sdef n="pr" /> 
+    <sdef n="prn" /> 
+    <sdef n="rel" /> 
+    <sdef n="nn" /> 
+    <sdef n="an" /> 
+    <sdef n="aa" /> 
+    <sdef n="ind" /> 
+    <sdef n="itg" /> 
+    <sdef n="det" /> 
+    <sdef n="dem" /> 
+    <sdef n="def" /> 
+    <sdef n="cnjcoo" /> 
+    <sdef n="cnjsub" /> 
+    <sdef n="cnjadv" /> 
+    <sdef n="nt" /> 
+    <sdef n="vbser" /> 
+    <sdef n="vbhaver" /> 
+    <sdef n="vblex" /> 
+    <sdef n="vbmod" /> 
+    <sdef n="inf" /> 
+    <sdef n="ger" /> 
+    <sdef n="pp" /> 
+    <sdef n="pri" /> 
+    <sdef n="p1" /> 
+    <sdef n="p2" /> 
+    <sdef n="p3" /> 
+    <sdef n="pii" /> 
+    <sdef n="ifi" /> 
+    <sdef n="fti" /> 
+    <sdef n="cni" /> 
+    <sdef n="prs" /> 
+    <sdef n="pis" /> 
+    <sdef n="fts" /> 
+    <sdef n="imp" /> 
+    <sdef n="pos" /> 
+    <sdef n="sp" /> 
+    <sdef n="ref" /> 
+    <sdef n="sup" /> 
+    <sdef n="num" /> 
+    <sdef n="ij" /> 
+    <sdef n="sent" /> 
+    <sdef n="cm" /> 
+    <sdef n="lpar" /> 
+    <sdef n="rpar" /> 
+    <sdef n="lquest" /> 
+    <sdef n="ND" /> 
+    <sdef n="GD" /> 
+    <sdef n="web" /> 
+  </sdefs>
+  <section  id="main" type="standard">
+	<e>       <p><l>lo<s n="detnt"/></l>              <r>el<s n="detnt"/></r></p></e>
+
+	<e>       <p><l>todo<s n="predet"/></l>           <r>tot<s n="predet"/></r></p></e>
+
+	<e>       <p><l>sierv<s n="n"/></l>                 <r>ser<s n="n"/></r></p></e>
+
+	<e>       <i>BBC<s n="n"/></i></e>
+
+	<e>       <i>UVic<s n="n"/></i></e>
+
+	<e>       <p><l>orador<s n="n"/></l>              <r>orador<s n="n"/></r></p></e>
+
+
+	<e r="LR" a="prompsit2adn"><p><l>prestamista<s n="n"/><s n="mf"/></l><r>prestador<s n="n"/><s n="GD"/></r></p></e>
+	<e r="RL" a="prompsit2adn"><p><l>prestamista<s n="n"/><s n="mf"/></l><r>prestador<s n="n"/><s n="m"/></r></p></e>
+	<e r="RL" a="prompsit2adn"><p><l>prestamista<s n="n"/><s n="mf"/></l><r>prestador<s n="n"/><s n="f"/></r></p></e>
+
+	<e>       <i>acusador<s n="n"/></i></e>
+
+	<e>       <i>administrador<s n="n"/></i></e>
+
+	<e>       <i>Ferrari<s n="np"/></i></e>
+	<e>       <i>Ferrari<s n="np"/><s n="al"/></i></e>
+
+	<e>       <i>Amara<s n="np"/></i></e>
+
+	<e i="yes">       <i>Antiguo<s n="np"/></i></e>
+
+	<e>       <i>Núria<s n="np"/></i></e>
+
+	<e>       <i>Pau<s n="np"/><s n="ant"/></i></e>
+	<e>       <i>Pau<s n="np"/><s n="loc"/></i></e>
+
+	<e>       <p><l>clarisa<s n="adj"/></l>              <r>clariss<s n="adj"/></r></p></e>
+
+	<e>       <i>lesbiana<s n="adj"/></i></e>
+
+	<e>       <p><l>casto<s n="adj"/></l>             <r>cast<s n="adj"/></r></p></e>
+
+	<e>       <p><l>bajo<s n="adj"/></l>              <r>baix<s n="adj"/></r></p></e>
+
+	<e r="RL"><p><l>una<b/>serie<b/>de<s n="det"/></l><r>un<b/>seguit<b/>de<s n="det"/></r></p></e>
+	<e>       <p><l>toda<b/>una<b/>serie<b/>de<s n="det"/></l><r>tot<b/>un<b/>seguit<b/>de<s n="det"/></r></p></e>
+  </section>
+</dictionary>

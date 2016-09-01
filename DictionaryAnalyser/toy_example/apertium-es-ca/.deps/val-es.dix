@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary>
+<alphabet>ÀÁÂÄÇÈÉÊËÌÍÎÏÑÒÓÔÖÙÚÛÜàáâäçèéêëìíîïñòóôöùúûüABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzŀl</alphabet>
+<sdefs>
+    <sdef n="acr"/> 
+    <sdef n="v2"/> 
+    <sdef n="predet"/> 
+    <sdef n="detnt"/> 
+    <sdef n="loc"/> 
+    <sdef n="ant"/> 
+    <sdef n="al"/> 
+    <sdef n="enc"/> 
+    <sdef n="pro"/> 
+    <sdef n="tn"/> 
+    <sdef n="n"/> 
+    <sdef n="np"/> 
+    <sdef n="adj"/> 
+    <sdef n="f"/> 
+    <sdef n="m"/> 
+    <sdef n="mf"/> 
+    <sdef n="sg"/> 
+    <sdef n="pl"/> 
+    <sdef n="adv"/> 
+    <sdef n="preadv"/> 
+    <sdef n="pr"/> 
+    <sdef n="prn"/> 
+    <sdef n="rel"/> 
+    <sdef n="nn"/> 
+    <sdef n="an"/> 
+    <sdef n="aa"/> 
+    <sdef n="ind"/> 
+    <sdef n="itg"/> 
+    <sdef n="det"/> 
+    <sdef n="dem"/> 
+    <sdef n="def"/> 
+    <sdef n="cnjcoo"/> 
+    <sdef n="cnjsub"/> 
+    <sdef n="cnjadv"/> 
+    <sdef n="nt"/> 
+    <sdef n="vbser"/> 
+    <sdef n="vbhaver"/> 
+    <sdef n="vblex"/> 
+    <sdef n="vbmod"/> 
+    <sdef n="inf"/> 
+    <sdef n="ger"/> 
+    <sdef n="pp"/> 
+    <sdef n="pri"/> 
+    <sdef n="p1"/> 
+    <sdef n="p2"/> 
+    <sdef n="p3"/> 
+    <sdef n="pii"/> 
+    <sdef n="ifi"/> 
+    <sdef n="fti"/> 
+    <sdef n="cni"/> 
+    <sdef n="prs"/> 
+    <sdef n="pis"/> 
+    <sdef n="fts"/> 
+    <sdef n="imp"/> 
+    <sdef n="pos"/> 
+    <sdef n="sp"/> 
+    <sdef n="ref"/> 
+    <sdef n="sup"/> 
+    <sdef n="num"/> 
+    <sdef n="ij"/> 
+    <sdef n="sent"/> 
+    <sdef n="cm"/> 
+    <sdef n="lpar"/> 
+    <sdef n="rpar"/> 
+    <sdef n="lquest"/> 
+    <sdef n="web"/> 
+  </sdefs>
+<pardefs>
+	<pardef n="lo__detnt">
+	    <e>
+	      <p>
+		<l/>
+		<r><s n="detnt"/></r>
+	      </p>
+	    </e>
+	</pardef>
+
+	<pardef n="tod/o__predet">
+	    <e>
+	      <p>
+		<l>as</l>
+		<r>o<s n="predet"/><s n="f"/><s n="pl"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>a</l>
+		<r>o<s n="predet"/><s n="f"/><s n="sg"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>os</l>
+		<r>o<s n="predet"/><s n="m"/><s n="pl"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>o</l>
+		<r>o<s n="predet"/><s n="m"/><s n="sg"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>o</l>
+		<r>o<s n="predet"/><s n="nt"/><s n="sp"/></r>
+	      </p>
+	    </e>
+	</pardef>
+
+	<pardef n="abogad/o__n">
+	    <e>
+	      <p>
+		<l>as</l>
+		<r>o<s n="n"/><s n="f"/><s n="pl"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>a</l>
+		<r>o<s n="n"/><s n="f"/><s n="sg"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>os</l>
+		<r>o<s n="n"/><s n="m"/><s n="pl"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>o</l>
+		<r>o<s n="n"/><s n="m"/><s n="sg"/></r>
+	      </p>
+	    </e>
+	</pardef>
+
+	<pardef n="BBC__n">
+	    <e>
+	      <p>
+		<l/>
+		<r><s n="n"/><s n="acr"/><s n="f"/><s n="sg"/></r>
+	      </p>
+	    </e>
+	</pardef>
+
+	<pardef n="señor__n">
+	    <e>
+	      <p>
+		<l>as</l>
+		<r><s n="n"/><s n="f"/><s n="pl"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>a</l>
+		<r><s n="n"/><s n="f"/><s n="sg"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>es</l>
+		<r><s n="n"/><s n="m"/><s n="pl"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l/>
+		<r><s n="n"/><s n="m"/><s n="sg"/></r>
+	      </p>
+	    </e>
+	</pardef>
+
+	<pardef n="accionista__n">
+	    <e>
+	      <p>
+		<l>s</l>
+		<r><s n="n"/><s n="mf"/><s n="pl"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l/>
+		<r><s n="n"/><s n="mf"/><s n="sg"/></r>
+	      </p>
+	    </e>
+	</pardef>
+
+	<pardef n="Ferrari__np">
+	    <e>
+	      <p>
+		<l/>
+		<r><s n="np"/><s n="al"/></r>
+	      </p>
+	    </e>
+
+	    <e>
+	      <p>
+		<l/>
+		<r><s n="np"/><s n="ant"/></r>
+	      </p>
+	    </e>
+	</pardef>
+
+	<pardef n="Afganistán__np">
+	    <e>
+	      <p>
+		<l/>
+		<r><s n="np"/><s n="loc"/></r>
+	      </p>
+	    </e>
+	</pardef>
+
+	<pardef n="Belén__np">
+	    <e>
+	      <p>
+		<l/>
+		<r><s n="np"/><s n="ant"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l/>
+		<r><s n="np"/><s n="loc"/></r>
+	      </p>
+	    </e>
+	</pardef>
+
+	<pardef n="absolut/o__adj">
+	    <e>
+	      <p>
+		<l>as</l>
+		<r>o<s n="adj"/><s n="f"/><s n="pl"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>a</l>
+		<r>o<s n="adj"/><s n="f"/><s n="sg"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>os</l>
+		<r>o<s n="adj"/><s n="m"/><s n="pl"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l>o</l>
+		<r>o<s n="adj"/><s n="m"/><s n="sg"/></r>
+	      </p>
+	    </e>
+
+
+	    </pardef>
+
+	<pardef n="una_serie_de__det">
+	    <e>
+	      <p>
+		<l/>
+		<r><s n="det"/><s n="ind"/><s n="mf"/><s n="pl"/></r>
+	      </p>
+	    </e>
+	</pardef>
+
+	<pardef n="clarisa__adj">
+	    <e>
+	      <p>
+		<l>s</l>
+		<r><s n="adj"/><s n="f"/><s n="pl"/></r>
+	      </p>
+	    </e>
+
+
+	    <e>
+	      <p>
+		<l/>
+		<r><s n="adj"/><s n="f"/><s n="sg"/></r>
+	      </p>
+	    </e>
+	</pardef>
+  </pardefs>
+
+<section id="main" type="standard">
+
+	<e lm="lo"><i>lo</i><par n="lo__detnt"/></e>
+
+	<e lm="todo"><i>tod</i><par n="tod/o__predet"/></e>
+
+	<e lm="siervo" a="prompsit2adn"><i>sierv</i><par n="abogad/o__n"/></e>
+
+	<e lm="BBC"><i>BBC</i><par n="BBC__n"/></e>
+	<e lm="UVic"><i>UVic</i><par n="BBC__n"/></e>
+
+	<e lm="orador"><i>orador</i><par n="señor__n"/></e>
+	<e lm="acusador"><i>acusador</i><par n="señor__n"/></e>
+	<e lm="administrador"><i>administrador</i><par n="señor__n"/></e>
+
+	<e lm="prestamista" a="prompsit2adn"><i>prestamista</i><par n="accionista__n"/></e>
+
+	<e lm="Ferrari"><i>Ferrari</i><par n="Ferrari__np"/></e>
+
+	<e lm="Amara"><i>Amara</i><par n="Afganistán__np"/></e>
+	<e lm="Antiguo" i="yes"><i>Antiguo</i><par n="Afganistán__np"/></e>
+
+	<e lm="Núria"><i>Núria</i><par n="Belén__np"/></e>
+	<e lm="Pau"><i>Pau</i><par n="Belén__np"/></e>
+
+
+	<e lm="toda una serie de"><i>toda<b/>una<b/>serie<b/>de</i><par n="una_serie_de__det"/></e>
+	<e r="RL" lm="una serie de" a="prompsit2uoc"><i>una<b/>serie<b/>de</i><par n="una_serie_de__det"/></e>
+
+
+	<e lm="lesbiana"><i>lesbiana</i><par n="clarisa__adj"/></e>
+	<e lm="clarisa"><i>clarisa</i><par n="clarisa__adj"/></e>
+
+
+	<e lm="casto"><i>cast</i><par n="absolut/o__adj"/></e>
+	<e lm="bajo"><i>baj</i><par n="absolut/o__adj"/></e>
+  </section>
+</dictionary>
