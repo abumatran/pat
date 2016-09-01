@@ -134,13 +134,15 @@ public class DataProcessing {
         //Checking the paradigms that can be used
         for(Pardef p: dic.pardefs.elements){
             Paradigm paradigm=new Paradigm(p, dic);
-            if(paradigm.getSuffixes().iterator().next().getLexInfo().size()>0){
-                String category=paradigm.getSuffixes().iterator().next().getLexInfo().get(0);
-                if(validpos.contains(category)){
-                    if(paradigm.GetNumberOfEntries(dic,false) < min_size_of_paradigm)
-                        small_pars.add(paradigm);
-                    else
-                        general_pars.add(paradigm);
+            if(paradigm.getSuffixes().size()>0){
+                if(paradigm.getSuffixes().iterator().next().getLexInfo().size()>0){
+                    String category=paradigm.getSuffixes().iterator().next().getLexInfo().get(0);
+                    if(validpos.contains(category)){
+                        if(paradigm.GetNumberOfEntries(dic,false) < min_size_of_paradigm)
+                            small_pars.add(paradigm);
+                        else
+                            general_pars.add(paradigm);
+                    }
                 }
             }
         }
