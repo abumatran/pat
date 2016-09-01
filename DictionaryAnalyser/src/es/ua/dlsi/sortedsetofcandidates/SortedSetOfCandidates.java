@@ -1,0 +1,418 @@
+/**************************************************************************
+ DictionaryAnalyser - Package based in DixTools and created to provide a set
+               of tools that ease the addition of new entries to dictionaries
+               and helps to analyse the dictionaries.
+
+ Copyright (C) 2011-2012 Universitat d'Alacant [www.ua.es]
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ **************************************************************************/
+
+package es.ua.dlsi.sortedsetofcandidates;
+
+import dics.elements.dtd.Dictionary;
+import es.ua.dlsi.monolingual.Candidate;
+import es.ua.dlsi.monolingual.EquivalentCandidates;
+import es.ua.dlsi.querying.GenericCandidateStructure;
+import es.ua.dlsi.querying.GenericDecision;
+import es.ua.dlsi.querying.RankedCandidate;
+import es.ua.dlsi.querying.ScoredSurfaceFormsSet;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.Stack;
+import java.util.TreeSet;
+
+/**
+ * Set of candidates stem/paradigm that could generate a surface form sorted
+ * from higher score to lower score.
+ * @author Miquel Esplà Gomis
+ */
+public class SortedSetOfCandidates extends GenericCandidateStructure{
+    
+    /**
+     * Subclass that implements a comparator of candidates by using the score
+     * to compare them.
+     */
+    public class CandidateComparator implements Comparator{
+        /**
+         * Method that compares tow ranked candidates. Method that compares two
+         * RankedCandidates by using the score assigned.
+         * @param o1 First candidate in the comparison
+         * @param o2 Second candidate in the comparison
+         * @return If o1 has a higher score than o2, the method returns -1, if
+         * o2 has a higher score than o1, the method returns 1, otherwise it
+         * returns 0
+         */
+        @Override
+        public int compare(Object o1, Object o2){
+            RankedCandidate c1=(RankedCandidate)o1;
+            RankedCandidate c2=(RankedCandidate)o2;
+
+            if(c1.getScore()>c2.getScore()) {
+                return -1;
+            }
+            else if(c1.getScore()<c2.getScore()) {
+                return 1;
+            }
+            else{
+                if(c1.getScoredSurfaceFormSet().getSurfaceForms().size()>
+                        c2.getScoredSurfaceFormSet().getSurfaceForms().size()) {
+                    return -1;
+                }
+                else if(c1.getScoredSurfaceFormSet().getSurfaceForms().size()<
+                        c2.getScoredSurfaceFormSet().getSurfaceForms().size()) {
+                    return 1;
+                }
+                else {
+                    return 0;
+                }
+            }
+        }
+    }
+
+    /*
+    public class CandidateComparatorBySize implements Comparator{
+        @Override
+        public int compare(Object o1, Object o2){
+            RankedCandidate c1=(RankedCandidate)o1;
+            RankedCandidate c2=(RankedCandidate)o2;
+            if(c1.getScoredSurfaceFormSet().getSurfaceForms().size()>
+                    c2.getScoredSurfaceFormSet().getSurfaceForms().size()) {
+                return -1;
+            }
+            else if(c1.getScoredSurfaceFormSet().getSurfaceForms().size()<
+                    c2.getScoredSurfaceFormSet().getSurfaceForms().size()) {
+                return 1;
+            }
+            else {
+                return 0;
+            }
+        }
+    }
+    */
+
+    /** Sorted list of RankedCandidate */
+    List<RankedCandidate> candidateslist;
+
+    /** Possible solution to a given surface form */
+    RankedCandidate possiblesolution;
+
+    /**
+     * Default constructor. Default constructor that initialises the object
+     * containing the list of candidates
+     */
+    public SortedSetOfCandidates(){
+        super();
+        candidateslist=new LinkedList<RankedCandidate>();
+    }
+
+    /**
+     * Method that adds a candidate to the list of ranked candidates. Method that
+     * adds a new candidate to the list of ranked candidates
+     * @param c Candidate to be added
+     * @param score Score of the new candidate in the list
+     * @param sfs Set of surface forms generated by the candidate
+     */
+    public void addCandidate(Candidate c, double score, ScoredSurfaceFormsSet sfs){
+        candidateslist.add(new RankedCandidate(c,score,sfs));
+        Collections.sort(candidateslist,new CandidateComparator());
+    }
+
+    /**
+     * Method that returns the list of ranked candidates. Method that returns the
+     * list of ranked candidates
+     * @return Returns the list of ranked candidates
+     */
+    public List<RankedCandidate> getCandidates(){
+        return this.candidateslist;
+    }
+
+    /**
+     * Method that returns the next surface form to be asked to a user in the
+     * process of accepting/rejecting surface forms for a given set of candidates.
+     * Method that returns a surface form to be asked to a user taking into
+     * account the surface forms that have been already accepted/rejected. The
+     * word is chosen in order to ease the selection of the first candidate in
+     * the list of candidates by accepting the word, i.e. a word that, if it is
+     * accepted, most of the other candidates are removed from the list.
+     * @return Returns the next surface form to be asked to a user in the process
+     * of accepting/rejecting surface forms for a given set of candidates
+     */
+    public String getNextSurfaceFormToAsk(){
+        Map<String,Integer> seenforms=new HashMap<String,Integer>();
+        //If no candidates left, the mtehod returns null
+        if(this.candidateslist==null || this.candidateslist.isEmpty()){
+            return null;
+        }
+        else{
+            //Getting the first candidate
+            RankedCandidate firstcandidate=this.candidateslist.get(0);
+            for(String form: firstcandidate.getScoredSurfaceFormSet().getSurfaceForms()){
+                seenforms.put(form, 0);
+            }
+            for(int index=1; index<this.candidateslist.size();index++){
+                RankedCandidate currentcandidate=this.candidateslist.get(index);
+                for(String form: firstcandidate.getScoredSurfaceFormSet().getSurfaceForms()){
+                    if(currentcandidate.getScoredSurfaceFormSet().getSurfaceForms().contains(form)){
+                        Integer i=seenforms.get(form);
+                        if(i==null) {
+                            seenforms.put(form, 1);
+                        }
+                        else {
+                            seenforms.put(form, i+1);
+                        }
+                    }
+                }
+            }
+            if(this.possiblesolution!=null){
+                for(String form: this.possiblesolution.getScoredSurfaceFormSet().getSurfaceForms()) {
+                    seenforms.remove(form);
+                }
+            }
+
+            int min=0;
+            if(seenforms.size()>0){
+                SortedSet<Integer> ss;
+                if(this.possiblesolution==null) {
+                    ss=new TreeSet<Integer>(seenforms.values());
+                }
+                else{
+                    ss=new TreeSet<Integer>(Collections.reverseOrder());
+                    ss.addAll(seenforms.values());
+                }
+                //ss=new TreeSet<Integer>();
+                min=ss.first();
+            }
+            if(this.possiblesolution==null){
+                //System.out.println("Lowest value "+min);
+                if(min==this.candidateslist.size()-1){
+                    this.possiblesolution=firstcandidate;
+                    this.candidateslist.remove(firstcandidate);
+                    return getNextSurfaceFormToAsk();
+                }
+                else{
+                    String exit=null;
+                    double highestscore=-1;
+                    for(Entry<String,Integer> entry: seenforms.entrySet()){
+                        double score=firstcandidate.getScoredSurfaceFormSet().getSurfaceFormScore(entry.getKey());
+                        if(entry.getValue()==min && score>highestscore){
+                            exit=entry.getKey();
+                            highestscore=score;
+                        }
+                    }
+                    return exit;
+                }
+            }
+            else{
+                String exit=null;
+                double higherscore=-1;
+                for(Entry<String,Integer> entry: seenforms.entrySet()){
+                    double score=firstcandidate.getScoredSurfaceFormSet().getSurfaceFormScore(entry.getKey());
+                    if(entry.getValue()==min && score>higherscore){
+                        exit=entry.getKey();
+                        higherscore=score;
+                    }
+                }
+                return exit;
+            }
+        }
+    }
+
+    /**
+     * Method that rejects a given surface form from the possible surface forms
+     * generated by the candidates in the ranked list of candidates. Method that
+     * removes all the candidates generating a given surface word form from the
+     * ranked list of candidates
+     * @param form Surface word form to be removed
+     */
+    @Override
+    public void RejectForm(String form){
+        //this.candidateslist.get(0).Reject(form);
+        SortedSetOfCandidatesDecision o=new SortedSetOfCandidatesDecision(true, form);
+        for(RankedCandidate c:this.candidateslist){
+            if(c.getScoredSurfaceFormSet().getSurfaceForms().contains(form)){
+                o.addCandidate(c);
+            }
+        }
+        for(RankedCandidate c: o.getRemovedcandidates()) {
+            this.candidateslist.remove(c);
+        }
+        this.operations.add(o);
+    }
+
+    /**
+     * Method that accepts a given surface form from the possible surface forms
+     * generated by the candidates in the ranked list of candidates. Method that
+     * removes all the candidates not-generating a given surface word form from
+     * the ranked list of candidates
+     * @param form Surface word form to be removed
+     */
+    @Override
+    public void AcceptForm(String form){
+        SortedSetOfCandidatesDecision o=new SortedSetOfCandidatesDecision(false, form);
+        Set<RankedCandidate> toremove=new LinkedHashSet<RankedCandidate>();
+        for(RankedCandidate c:this.candidateslist){
+            if(!c.getScoredSurfaceFormSet().getSurfaceForms().contains(form)){
+                toremove.add(c);
+            }
+        }
+        for(RankedCandidate c: toremove) {
+            o.addCandidate(c);
+            this.candidateslist.remove(c);
+        }
+        if(this.possiblesolution!=null &&
+                !this.possiblesolution.getScoredSurfaceFormSet().getSurfaceForms().contains(form)){
+            o.addCandidate(this.possiblesolution);
+            this.possiblesolution=null;
+        }
+        this.operations.add(o);
+    }
+
+    /**
+     * Method that undoes the last accept/reject operation. Method that reverts
+     * the last accept/reject decision on the set of surface forms asked to the
+     * user. All the operations are saved in a stack, and the set of candidates
+     * that are removed from the ranked list of candidates is associated to those
+     * operations. In this way, reverting the last operation drives the list
+     * to the previous state, containing again all the candidates which were
+     * removed in as a result of the operation.
+     */
+    public void GoBack(){
+        SortedSetOfCandidatesDecision lastoperation=(SortedSetOfCandidatesDecision) this.operations.pop();
+        this.candidateslist.addAll(lastoperation.removedcandidates);
+        Collections.sort(candidateslist,new CandidateComparator());
+    }
+
+    /**
+     * Method that returns the possible solution in a given moment of the asking
+     * process. Method that returns the candidate which is a temporal solution
+     * for the system. In case that the list of candidates is empty, this is the
+     * final solution.
+     * @return Returns the possible solution in a given moment of the asking
+     * process
+     */
+    public EquivalentCandidates getSolution(){
+        return this.possiblesolution;
+    }
+
+    /**
+     * Method that returns the number of candidates.
+     * @return Returns the number of candidates in the list.
+     */
+    public int GetNumberOfDifferentCandidates(){
+        if(this.candidateslist!=null){
+            return this.candidateslist.size();
+        }
+        else{
+            return 0;
+        }
+    }
+    
+    /**
+     * Method that returns the position of the right paradigm 
+     * @param c Candidate to be searched in the list of candidates
+     * @return Returns the position of the searched candidate in the list of
+     * candidates. If it does not appear, the method returns -1.
+     */
+    public int GetCandidatePosition(Candidate c) throws NotInListException{
+        for(int j=0;j<this.candidateslist.size();j++){
+            if(this.candidateslist.get(j).getCandidates().contains(c)){
+                return j;
+            }
+        }
+        throw new NotInListException();
+    }
+    
+    /**
+     * Method that returns the position of the right paradigm 
+     * @param c Candidate to be searched in the list of candidates
+     * @return Returns the position of the searched candidate in the list of
+     * candidates. If it does not appear, the method returns -1.
+     */
+    public int GetCandidatePositionInExtendedList(Candidate c) throws NotInListException{
+        List<Candidate> candidatelist=new LinkedList<Candidate>();
+        for(RankedCandidate rc: this.candidateslist){
+            candidatelist.addAll(rc.getCandidates());
+            if(rc.getCandidates().contains(c))
+                break;
+        }
+        for(int j=0;j<candidatelist.size();j++){
+            if(candidatelist.get(j).equals(c)){
+                return j;
+            }
+        }
+        throw new NotInListException();
+    }
+    
+    /**
+     * Method that counts the number of queries necessary to decide which is the
+     * correct candidate. Method that counts the number of queries necessary to
+     * decide which is the correct candidate
+     * @param candidate Correct candidate which should be found in the sorted list
+     * @param dic Dictionary from which the candidate was obtained
+     * @return Returns the number of queries necessary to decide which is the
+     * correct candidate
+     * @throws NotInListException 
+     */
+    public int QuestionsToParadigm(Candidate candidate, Dictionary dic) throws NotInListException{
+        RankedCandidate copy_posible_sol=null;
+        if(this.possiblesolution!=null)
+            copy_posible_sol=new RankedCandidate(this.possiblesolution);
+        List<RankedCandidate> copy_candidateslist=new LinkedList<RankedCandidate>();
+        for(RankedCandidate rc: this.candidateslist){
+            copy_candidateslist.add(new RankedCandidate(rc));
+        }
+        Stack<GenericDecision> copy_operations=(Stack<GenericDecision>)this.operations.clone();
+        
+        int numberofquestions_score=0;
+        Set<String> surfaceforms=candidate.GetSurfaceForms(dic);
+        String formtoask;
+        while((formtoask=getNextSurfaceFormToAsk())!=null){
+            if(surfaceforms.contains(formtoask)) {
+                AcceptForm(formtoask);
+            }
+            else {
+                RejectForm(formtoask);
+            }
+            numberofquestions_score++;
+        }
+        if(this.possiblesolution==null){
+            if(this.candidateslist.size()==1){
+                this.possiblesolution=this.candidateslist.get(0);
+            }
+            else{
+                System.err.println("Error: in candidate "+candidate.toString()+
+                        " the candidate list afeter querying contains "+
+                        candidateslist.size()+" and there is no possible solution");
+                System.exit(-1);
+            }
+        }
+        if(!this.possiblesolution.contains(candidate)){
+            throw new NotInListException();
+        }
+        this.operations=copy_operations;
+        this.possiblesolution=copy_posible_sol;
+        this.candidateslist=copy_candidateslist;
+        return numberofquestions_score;
+    }
+}
