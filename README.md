@@ -2,7 +2,7 @@
 
 ## Resources
 
-Dictionaries and frequency lists
+Dictionaries and frequency lists produced by Sergio.
 
 ## DictionaryAnalyser
 
