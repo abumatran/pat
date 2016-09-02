@@ -10,6 +10,7 @@ import dics.elements.dtd.Pardef;
 import dictools.utils.DictionaryReader;
 import es.ua.dlsi.monolingual.Candidate;
 import es.ua.dlsi.monolingual.Paradigm;
+import es.ua.dlsi.monolingual.Suffix;
 import es.ua.dlsi.suffixtree.Dix2suffixtree;
 import es.ua.dlsi.suffixtree.SuffixTree;
 import es.ua.dlsi.utils.CmdLineParser;
@@ -23,6 +24,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -70,8 +72,9 @@ public class DataProcessing {
         validpos.addAll(Arrays.asList(((String)parser.getOptionValue(ovalidpos,null)).split(",")));
         Double trainpercent=(Double)parser.getOptionValue(otrainingpercent,1.0);
 
-        if(validpos==null){
+        if(validpos.isEmpty()){
             System.err.println("The list of valid POS must be provided (use option -v)");
+            System.exit(-1);
         }
         
         PrintWriter trainoutput;
@@ -138,10 +141,12 @@ public class DataProcessing {
                 if(paradigm.getSuffixes().iterator().next().getLexInfo().size()>0){
                     String category=paradigm.getSuffixes().iterator().next().getLexInfo().get(0);
                     if(validpos.contains(category)){
-                        if(paradigm.GetNumberOfEntries(dic,false) < min_size_of_paradigm)
-                            small_pars.add(paradigm);
-                        else
-                            general_pars.add(paradigm);
+                        if(paradigm.GetNumberOfEntries(dic,false)> 0){
+                            if(paradigm.GetNumberOfEntries(dic,false) < min_size_of_paradigm)
+                                small_pars.add(paradigm);
+                            else
+                                general_pars.add(paradigm);
+                        }
                     }
                 }
             }
@@ -160,18 +165,20 @@ public class DataProcessing {
         System.err.println(general_pars.size());
         System.err.print("Number of training paradigms: ");
         System.err.println(n_training_paradigms_paradigm);
+        System.err.print("Number of very small training paradigms: ");
+        System.err.println(small_pars.size());
         
         System.err.println("PRINTING TRAINING CORPUS");
         long seed = System.nanoTime();
         Collections.shuffle(general_pars, new Random(seed));
         List<Paradigm> trainingpars=general_pars.subList(0, n_training_paradigms_paradigm);
         trainingpars.addAll(small_pars);
-        BuildDataset(dic, multiword, trainingpars, tree, words_in_corpus, trainoutput);
+        BuildDataset(dic, multiword, trainingpars, tree, words_in_corpus, trainoutput, validpos);
         trainoutput.close();
         
         System.err.println("PRINTING TEST CORPUS");
         List<Paradigm> testpars=general_pars.subList(n_training_paradigms_paradigm+1,general_pars.size());
-        BuildDataset(dic, multiword, testpars, tree, words_in_corpus, testoutput);
+        BuildDataset(dic, multiword, testpars, tree, words_in_corpus, testoutput, validpos);
         testoutput.close();
     }
     
@@ -187,7 +194,7 @@ public class DataProcessing {
      */
     public static void BuildDataset(Dictionary dic, boolean multiword,
             List<Paradigm> pars, SuffixTree tree, Set<String> words_in_corpus,
-            PrintWriter output){
+            PrintWriter output, Set<String> validpos){
        
         //Getting all the entries associated to every paradigm
         List<Candidate> candidates=new LinkedList();
@@ -197,20 +204,47 @@ public class DataProcessing {
         
         //Getting all the surface forms for every entry associated to every paradigm
         for(Candidate c: candidates){
-            Set<String> surfaceforms=c.GetSurfaceForms(dic);
+            Map<String, Set<Suffix>> surfaceforms=c.GetExpansion(dic);
             //Building the collection of candidates for every surface form
-            for(String sform: surfaceforms){
+            for(Map.Entry<String,Set<Suffix>> s: surfaceforms.entrySet()){
+                String sform=s.getKey();
                 if(words_in_corpus.contains(sform)){
-                    JSONObject json=new JSONObject();
-                    JSONArray candidatelist=new JSONArray();
-                    Set<Candidate> guessedcandidates=tree.SegmentWord(sform);
-                    for(Candidate candidate: guessedcandidates){
-                        candidatelist.add(candidate.toJSON(dic));
+                    Set<Suffix> suffixes = s.getValue();
+                    boolean validinflection=false;
+                    for(Suffix suf: suffixes){
+                        List<String> lexinfo=suf.getLexInfo();
+                        if(lexinfo.size() > 0 && validpos.contains(lexinfo.get(0))){
+                            validinflection=true;
+                        }
                     }
-                    json.put("candidates",candidatelist);
-                    json.put("correct_candidate",c.toJSON(dic));
-                    json.put("surfaceword",sform);
-                    output.println(json.toJSONString());
+                    
+                    if(validinflection){
+                    
+                        JSONObject json=new JSONObject();
+                        JSONArray candidatelist=new JSONArray();
+                        Set<Candidate> guessedcandidates=tree.SegmentWord(sform);
+                        boolean correct_found=false;
+                        for(Candidate candidate: guessedcandidates){
+                            if(candidate.equals(c))
+                                correct_found=true;
+                            Set<Suffix> candidatesuffixes=candidate.getSuffixes(dic);
+                            if(candidatesuffixes.iterator().hasNext()){
+                                List<String> lexinfo=candidate.getSuffixes(dic).iterator().next().getLexInfo();
+                                if(lexinfo.size() > 0 && validpos.contains(lexinfo.get(0)))
+                                    candidatelist.add(candidate.toJSON(dic));
+                            }
+                        }
+                        if(!correct_found)
+                        {
+                            System.err.println("ALERT: candidate '"+c.toString()+"' could not be found among the collection of sugested candidates!");
+                        }
+                        else{
+                            json.put("candidates",candidatelist);
+                            json.put("correct_candidate",c.toJSON(dic));
+                            json.put("surfaceword",sform);
+                            output.println(json.toJSONString());
+                        }
+                    }
                 }
             }
         }
