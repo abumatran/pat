@@ -306,12 +306,16 @@ public class Candidate implements Serializable, Comparable<Object> {
                     lexInfoList.add(lex);
                 }
                 
-                surfaceForm.put(entry.getKey(),lexInfoList);
+                surfaceForm.put("tags",lexInfoList);
+                
+                surfaceForm.put("surfaceform", entry.getKey());
+
+                
                 surfaceFormList.add(surfaceForm);
             }
         }
         
-        json.put("surfaceforms", surfaceFormList);
+        json.put("expansion", surfaceFormList);
         json.put("stem",this.getStem());
         json.put("paradigm",this.getParadigm());
         json.put("lemma",this.GetLemma(dic));

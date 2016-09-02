@@ -101,6 +101,7 @@ public class Paradigm implements Serializable{
     private Set<Pair<String,List<String>>> BuildSuffixes(List<E> elements,
             Set<Pair<StringBuilder,List<String>>> currentLexicalForms, Dictionary dic)
     {
+        //
          List<Pair<String,List<String>>> localList=new LinkedList<Pair<String,List<String>>>();
          for(E element: elements)
          {
@@ -129,7 +130,7 @@ public class Paradigm implements Serializable{
                      listgeneratedByElement.clear();
                      for(Pair<String,List<String>> r: resultList) {
                          listgeneratedByElement.add(new Pair(new StringBuilder(r.getFirst()),
-                         new LinkedList<String>()));
+                         r.getSecond()));
                      }
                  }
              }
