@@ -8,6 +8,6 @@ Metric: MRR
 
 SVR:
 
-Fancy Miquel's neural stuff: 
+Fancy Miquel's neural stuff: one layer: 0.31356; two layers: 0.49333
 
 Miquel's heuristic: 
