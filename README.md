@@ -6,13 +6,13 @@ There are three main steps necessary to produce the ranking output:
 
 1. producing a frequency list of tokens from a corpus / Wikipedia dump
 2. generating candidates of (paradigm, lemma) pairs from a list of OOVs
-3. ranking the candidates by using the corpus information information
+3. ranking the candidates by using the corpus information
 
 These three steps are described in the following three subsections.
 
 ## Resources
 
-Dictionaries and frequency lists produced by Sergio.
+To be able to rank the (paradigm, lemma) candidates for a OOV we need corpus frequency information. This information can be obtained through various sources. If you do not have a frequency list like the [Italian example file](Resources/Wikipedia/ranking.ita), you can find instructions on how to obtain one from a Wikipedia dump on [Resources/Wikipedia/](Resources/Wikipedia/).
 
 ## BuildDataset
 
