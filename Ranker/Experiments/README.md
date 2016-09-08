@@ -6,8 +6,8 @@ Setting: first 10k surface forms train, first 1k surface forms test
 
 Metric: MRR
 
-SVR:
+SVR: running for 36 hours and counting...
 
 Fancy Miquel's neural stuff: one layer: 0.31356; two layers: 0.49333
 
-Miquel's heuristic: 
+Miquel's heuristic: 0.47820
