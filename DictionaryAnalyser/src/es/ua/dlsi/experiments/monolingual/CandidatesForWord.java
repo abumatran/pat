@@ -25,6 +25,7 @@ package es.ua.dlsi.experiments.monolingual;
 import dics.elements.dtd.*;
 import dictools.utils.DictionaryReader;
 import es.ua.dlsi.monolingual.Candidate;
+import es.ua.dlsi.monolingual.Suffix;
 import es.ua.dlsi.suffixtree.Dix2suffixtree;
 import es.ua.dlsi.suffixtree.SuffixTree;
 import es.ua.dlsi.utils.CmdLineParser;
@@ -59,10 +60,6 @@ public class CandidatesForWord {
         CmdLineParser parser = new CmdLineParser();
         //Help command
         CmdLineParser.Option ohelp = parser.addBooleanOption('h',"help");
-        //Avoid clossed categories
-        CmdLineParser.Option oclosedc = parser.addBooleanOption('c',"without-closedcats");
-        //Surface form to be used for expansion
-        CmdLineParser.Option oremovecategories = parser.addStringOption("remove-categories");
         //Surface form to be used for expansion
         CmdLineParser.Option osurfaceform = parser.addStringOption('s',"surfaceform");
         //Path to a file containing the list of stems to be used for expansion
@@ -71,12 +68,11 @@ public class CandidatesForWord {
         CmdLineParser.Option ooutput = parser.addStringOption('o',"output");
         //Dictionary to be expanded
         CmdLineParser.Option odictionary = parser.addStringOption('d',"dictionary");
-        //Ignore entries in the dictionary with this restriction
-        CmdLineParser.Option orestriction = parser.addStringOption('r', "restriction");
-        //Flag for specifying whether lexical information should be produced
         //together with the surface forms obtained
-        CmdLineParser.Option owithlexinfo = parser.addBooleanOption('l',"lexical-info");
         CmdLineParser.Option oparadigms = parser.addStringOption('p',"paradigms");
+        //Valid part-of-speech cathegories that can be taken into account for generating candidates
+        CmdLineParser.Option ovalidpos = parser.addStringOption('v',"valid-pos");
+
 
         try{
             parser.parse(args);
@@ -91,14 +87,13 @@ public class CandidatesForWord {
         }
 
         boolean help=(Boolean)parser.getOptionValue(ohelp,false);
-        boolean closedc=(Boolean)parser.getOptionValue(oclosedc,false);
-        String restrictionstr=(String)parser.getOptionValue(orestriction,null);
-        String removecategories=(String)parser.getOptionValue(oremovecategories,null);
         String surfaceform=(String)parser.getOptionValue(osurfaceform,null);
         String outputpath=(String)parser.getOptionValue(ooutput,null);
         String surfaceformlistfile=(String)parser.getOptionValue(osurfaceformlistfile,null);
         String dictionary=(String)parser.getOptionValue(odictionary,null);
         String paradigmsfile=(String)parser.getOptionValue(oparadigms,null);
+        Set<String> validpos=new HashSet<String>();
+        validpos.addAll(Arrays.asList(((String)parser.getOptionValue(ovalidpos,null)).split(",")));
         
         if(help){
             System.err.println("This tool provides the list of stem/paradigm candidates"
@@ -205,14 +200,6 @@ public class CandidatesForWord {
                 acceptedparadigmslist=null;
             }
         }
-        Set<String> restriction=new HashSet<String>();
-        if(restrictionstr!=null){
-            restriction.addAll(Arrays.asList(restrictionstr.split(",")));
-        }
-        
-        Set<String> cats_to_remove=new HashSet<String>();
-        if(removecategories!=null)
-            cats_to_remove.addAll(Arrays.asList(removecategories.split(",")));
         
         //Reading the dictionary and generating the set of lexical forms
         DictionaryReader dicReader = new DictionaryReader(dictionary);
@@ -232,39 +219,15 @@ public class CandidatesForWord {
                 
                 JSONObject json=new JSONObject();
                 JSONArray candidatelist=new JSONArray();
-                Set<Candidate> candidates=tree.SegmentWord(sform);
-                for(Candidate c: candidates){
-                    if((acceptedparadigmslist==null ||
-                            acceptedparadigmslist.contains(c.getParadigm())) &&
-                            (!closedc || !c.isClosedCategoryParadigm(dic))){
-                        /*String stem=c.getStem();
-                        String lemma=c.GetLemma(dic);
-                        Pardef p= dic.pardefs.getParadigmDefinition(par);
-                        String par=c.getParadigm();*/
+                
+                Set<Candidate> guessedcandidates=tree.SegmentWord(sform);
 
-                        Set<String> tags=null;//DicParadigm.getAllTags(par, dic);
-                        boolean skippar=false;
-                        for(String t: cats_to_remove){
-                            if(tags.contains(t)){
-                                skippar=true;
-                                break;
-                            }
-                        }
-                        if(!skippar){
-                            candidatelist.add(c.toJSON(dic));
-                            /*List<Pair<StringBuilder, StringBuilder>> expansions=
-                                    DicParadigm.ExpandParadigm(p,stem, "", dic,
-                                            restriction);
-                            output.println(par+";"+stem+";"+lemma);
-                            for(Pair<StringBuilder,StringBuilder> exp: expansions) {
-                                output.print(exp.getFirst());
-                                if(withlexinfo)
-                                    output.println(exp.getSecond());
-                                else
-                                    output.println();
-                            }*/
-                            //output.println();
-                        }
+                for(Candidate candidate: guessedcandidates){
+                    Set<Suffix> candidatesuffixes=candidate.getSuffixes(dic);
+                    if(candidatesuffixes.iterator().hasNext()){
+                        List<String> lexinfo=candidate.getSuffixes(dic).iterator().next().getLexInfo();
+                        if(validpos.isEmpty() || (lexinfo.size() > 0 && validpos.contains(lexinfo.get(0))))
+                            candidatelist.add(candidate.toJSON(dic));
                     }
                 }
                 json.put("candidates",candidatelist);

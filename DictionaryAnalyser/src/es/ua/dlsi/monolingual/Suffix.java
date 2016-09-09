@@ -71,6 +71,34 @@ public class Suffix implements Serializable{
         return this.lexinfo;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + (this.suffix != null ? this.suffix.hashCode() : 0);
+        hash = 37 * hash + (this.lexinfo != null ? this.lexinfo.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Suffix other = (Suffix) obj;
+        if ((this.suffix == null) ? (other.suffix != null) : !this.suffix.equals(other.suffix)) {
+            return false;
+        }
+        if (this.lexinfo != other.lexinfo && (this.lexinfo == null || !this.lexinfo.equals(other.lexinfo))) {
+            return false;
+        }
+        return true;
+    }
+    
+    
+
     /**
      * Method that sets a new suffix.
      * @param suffix Suffix to be set

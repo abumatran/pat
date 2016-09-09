@@ -220,7 +220,7 @@ public class Candidate implements Serializable, Comparable<Object> {
                 return this.stem.compareTo(other.stem);
             }
         }
-   } 
+   }
     
     /**
      * Method that produces the whole expansion of the candidate.
