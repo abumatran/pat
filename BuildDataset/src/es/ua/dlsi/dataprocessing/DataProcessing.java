@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dataprocessing;
+package es.ua.dlsi.dataprocessing;
 
 import dics.elements.dtd.Dictionary;
 import dics.elements.dtd.Pardef;
@@ -201,6 +201,9 @@ public class DataProcessing {
         for(Paradigm p: pars){
             candidates.addAll(p.GetRelatedEntries(dic, multiword));
         }
+        
+        long seed = System.nanoTime();
+        Collections.shuffle(candidates, new Random(seed));
         
         //Getting all the surface forms for every entry associated to every paradigm
         for(Candidate c: candidates){
