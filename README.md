@@ -64,7 +64,7 @@ Where options correspond to:
 
 ## Ranker
 
-For now the ranking is performed by following the simple heuristic from ([http://link.springer.com/article/10.1007/s10579-016-9360-9](Esplà-Gomis et al. 2016)).
+For now the ranking is performed by following the simple heuristic from ([Esplà-Gomis et al. 2016](http://link.springer.com/article/10.1007/s10579-016-9360-9)).
 
 This ranker combines the first step output (corpus frequency calculation, [Resources/Wikipedia](Resources/Wikipedia)) and the second step output (candidate generation, [BuildDataset/](BuildDataset/)) of the tool.
 
