@@ -22,19 +22,24 @@
 
 package es.ua.dlsi.experiments.monolingual;
 
-import dics.elements.dtd.*;
+
+import dics.elements.dtd.Dictionary;
 import dictools.utils.DictionaryReader;
 import es.ua.dlsi.monolingual.Candidate;
 import es.ua.dlsi.monolingual.Suffix;
 import es.ua.dlsi.suffixtree.Dix2suffixtree;
 import es.ua.dlsi.suffixtree.SuffixTree;
 import es.ua.dlsi.utils.CmdLineParser;
-import java.io.*;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashSet;
+import java.util.Set;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -93,7 +98,9 @@ public class CandidatesForWord {
         String dictionary=(String)parser.getOptionValue(odictionary,null);
         String paradigmsfile=(String)parser.getOptionValue(oparadigms,null);
         Set<String> validpos=new HashSet<String>();
-        validpos.addAll(Arrays.asList(((String)parser.getOptionValue(ovalidpos,null)).split(",")));
+        String validposlist=(String)parser.getOptionValue(ovalidpos,null);
+        if(validposlist!=null)
+            validpos.addAll(Arrays.asList((validposlist).split(",")));
         
         if(help){
             System.err.println("This tool provides the list of stem/paradigm candidates"
